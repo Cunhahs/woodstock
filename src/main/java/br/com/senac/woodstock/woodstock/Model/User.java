@@ -9,22 +9,22 @@ import lombok.Setter;
 //@Table(name = "user")
 public class User {
     
-    String nome;
+    String username;
     String cnpj ;
     String email;
     String password;
-    String endereco;
-    int telefone;
+    String address;
+    int cellPhone;
     String adm;
     
     public User(){}
     
-    public User(String nome, String cnpj, String email, String password, int telefone, String adm) {
-        this.nome = nome;
+    public User(String username, String cnpj, String email, String password, int cellPhone, String adm) {
+        this.username = username;
         this.cnpj = cnpj;
         this.email = email;
         this.password = password;
-        this.telefone = telefone;
+        this.cellPhone = cellPhone;
         this.adm = adm;
     }
 

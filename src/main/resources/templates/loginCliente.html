@@ -8,8 +8,8 @@
 <div class="login-form">
   <h2>Login Cliente</h2>
   <form th:action="@{/login}" th:object="${user}" method="post">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" th:field="*{nome}" required />
+    <label for="username">Nome:</label>
+    <input type="text" id="username" th:field="*{username}" required />
     <label for="password">Senha:</label>
     <input type="password" id="password" th:field="*{password}" required />
     <button type="submit">Login</button>
