@@ -1,34 +1,18 @@
 package br.com.senac.woodstock.woodstock.service;
 
+import java.util.List;
+
 import br.com.senac.woodstock.woodstock.Model.User;
-import br.com.senac.woodstock.woodstock.repo.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+public interface UserService {
+    
+    User createUser(User user);
 
-@Service
-public class UserService {
+    void deleteUser(Long id);
 
-    @Autowired
-    UserRepository userRepository;
+    List<User> getAllUsers();
 
-    public Optional<User> findByUsername(String username) {
-        System.out.println("User service 1");
+    User getUserById(Long id);
 
-        return userRepository.findByUsername(username);
-    }
-
-    public boolean validateUser(String username, String password) {
-        System.out.println("User service 2");
-        System.out.println(username);
-        System.out.println(password);
-
-        Optional<User> user = userRepository.findByUsernameAndPassword(username, password);
-        if (user.isPresent()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    User updateUser(User user);
 }
