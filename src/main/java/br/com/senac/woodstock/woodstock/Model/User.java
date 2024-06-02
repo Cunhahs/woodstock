@@ -1,8 +1,6 @@
 package br.com.senac.woodstock.woodstock.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,24 +11,28 @@ import lombok.Setter;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
     String username;
     String cnpj ;
     String email;
     String password;
+    @Column(name = "address")
     String address;
-    int cellPhone;
+    String cell_phone;
+    @Column(name = "adm")
     String adm;
     
     public User(){}
     
-    public User(String username, String cnpj, String email, String password, int cellPhone, String adm) {
+    public User(String username, String cnpj, String address, String email, String password, String cell_phone, String adm) {
         this.username = username;
+        this.address = address;
         this.cnpj = cnpj;
         this.email = email;
         this.password = password;
-        this.cellPhone = cellPhone;
-        this.adm = adm;
+        this.cell_phone = cell_phone;
+        this.adm = "N";
     }
 
 }
