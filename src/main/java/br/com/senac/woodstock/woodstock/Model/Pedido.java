@@ -1,8 +1,6 @@
 package br.com.senac.woodstock.woodstock.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,16 +13,22 @@ import lombok.Setter;
 public class Pedido{
 
     @Id
-    String id;
-    String dataPedido;
-    String valorTotal;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
+    private Long idPedido;
 
-    
-    public Pedido(){}
-    
-    public Pedido(String dataPedido, String valorTotal) {
-        this.dataPedido = dataPedido;
-        this.valorTotal = valorTotal;
+    @Column(name = "data_pedido")
+    private String dataPedido;
+
+    @Column(name = "valor_pedido")
+    private String valorPedido;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_user_id"))
+    private User user;
+
+    public Pedido() {
+
     }
 }
 

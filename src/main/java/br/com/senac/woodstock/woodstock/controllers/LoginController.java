@@ -16,7 +16,7 @@ public class LoginController {
     @Autowired
     private Userimpl userService;
 
-   @GetMapping("/login")
+    @GetMapping("/login")
     public String showLoginPage(Model model) {
         System.out.println("In showLoginPage");
         model.addAttribute("user", new User());
