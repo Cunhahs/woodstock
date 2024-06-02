@@ -1,4 +1,4 @@
-/*
+
 CREATE TABLE IF NOT EXISTS User (
     id VARCHAR(36) NOT NULL,
     username VARCHAR(50) NOT NULL,
@@ -10,4 +10,10 @@ CREATE TABLE IF NOT EXISTS User (
     adm CHAR(1),
     PRIMARY KEY (id)
     );
-*/
+
+
+    CREATE TABLE IF NOT EXISTS Orders (
+    id VARCHAR(255) NOT NULL,
+    data_pedido VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+    );
