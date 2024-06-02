@@ -13,8 +13,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import static org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

@@ -1,6 +1,7 @@
 package br.com.senac.woodstock.woodstock.service;
 
 import br.com.senac.woodstock.woodstock.Model.User;
+import br.com.senac.woodstock.woodstock.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
