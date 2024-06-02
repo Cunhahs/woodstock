@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+</head>
+<body>
+    <h1>Order Details</h1>
+    <form>
+        <div th:object="${order}">
+            <label for="id">ID:</label>
+            <span th:field="*{id}"></span>
+            <br>
+
+            <label for="customerName">Customer Name:</label>
+            <span th:field="*{customerName}"></span>
+            <br>
+
+            <label for="totalAmount">Total Amount:</label>
+            <span th:field="*{totalAmount}"></span>
+            <br>
+
+            <label for="orderDate">Order Date:</label>
+            <span th:field="*{orderDate}"></span>
+            <br>
+
+            <label for="items">Items:</label>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : *{items}">
+                        <td th:text="${item.productName}"></td>
+                        <td th:text="${item.quantity}"></td>
+                        <td th:text="${item.price}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
