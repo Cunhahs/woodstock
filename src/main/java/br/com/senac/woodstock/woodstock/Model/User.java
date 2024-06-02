@@ -21,7 +21,7 @@ public class User {
     String address;
     String cell_phone;
     @Column(name = "adm")
-    String adm;
+    String adm="N";
     
     public User(){}
     
@@ -32,7 +32,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.cell_phone = cell_phone;
-        this.adm = "N";
+        this.adm = adm;
     }
 
 }

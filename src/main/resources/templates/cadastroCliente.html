@@ -1,34 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>User Registration</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Cadastro de cliente</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function validateCNPJ(cnpj) {
+            cnpj = cnpj.replace(/[^\d]+/g, '');
+
+            if (cnpj.length != 14) return false;
+
+            // Elimina CNPJs inválidos conhecidos
+            if (["00000000000000", "11111111111111", "22222222222222", "33333333333333", 
+                 "44444444444444", "55555555555555", "66666666666666", "77777777777777", 
+                 "88888888888888", "99999999999999"].includes(cnpj)) return false;
+
+            // Valida DVs
+            let size = cnpj.length - 2;
+            let numbers = cnpj.substring(0, size);
+            let digits = cnpj.substring(size);
+            let sum = 0;
+            let pos = size - 7;
+
+            for (let i = size; i >= 1; i--) {
+                sum += numbers.charAt(size - i) * pos--;
+                if (pos < 2) pos = 9;
+            }
+            let result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result != digits.charAt(0)) return false;
+
+            size += 1;
+            numbers = cnpj.substring(0, size);
+            sum = 0;
+            pos = size - 7;
+            for (let i = size; i >= 1; i--) {
+                sum += numbers.charAt(size - i) * pos--;
+                if (pos < 2) pos = 9;
+            }
+            result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result != digits.charAt(1)) return false;
+
+            return true;
+        }
+
+        function checkCNPJ(input) {
+            if (!validateCNPJ(input.value)) {
+                input.setCustomValidity("CNPJ inválido");
+            } else {
+                input.setCustomValidity("");
+            }
+        }
+
+        function checkPasswords() {
+            const password = document.getElementById("password").value;
+            const password2 = document.getElementById("password2").value;
+            if (password !== password2) {
+                document.getElementById("password2").setCustomValidity("As senhas não coincidem");
+            } else {
+                document.getElementById("password2").setCustomValidity("");
+            }
+        }
+
+        function validatePhoneNumber(input) {
+            const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+            if (!phoneRegex.test(input.value)) {
+                input.setCustomValidity("Número de telefone inválido. Formato esperado: (XX) XXXXX-XXXX");
+            } else {
+                input.setCustomValidity("");
+            }
+        }
+    </script>
 </head>
 <body>
-	<div class="register-form">
-		<h2>Register</h2>
-		<form th:action="@{/cadastro}" th:object="${user}" method="post">
-			<label for="nome">Razão Social:</label>
-			<input type="text" id="nome" th:field="*{username}" required>
-			<br>
-			<label for="cnpj">CNPJ:</label>
-			<input type="text" id="cnpj" th:field="*{cnpj}" required>
-			<br>
-			<label for="email">Email:</label>
-			<input type="email" id="email" th:field="*{email}" required>
-			<br>
-			<label for="cell_phone">Telefone:</label>
-			<input id="cell_phone" th:field="*{cell_phone}" required>
-			<br>
-			<label for="address">Endereco:</label>
-			<input id="address" th:field="*{address}" required>
-			<br>
-			<label for="password">Senha:</label>
-			<input type="password" id="password" th:field="*{password}" required>
-			<br>
-			<button type="submit">Cadastrar</button>
-		</form>
-	
-	</div>
+    <div class="register-form">
+        <h2>Register</h2>
+        <form th:action="@{/cadastro}" th:object="${user}" method="post">
+            <label for="nome">Razão Social:</label>
+            <input type="text" id="nome" th:field="*{username}" required>
+            <br>
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" th:field="*{cnpj}" oninput="checkCNPJ(this)" required>
+            <div id="cnpjError" style="color:red;"></div>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required>
+            <br>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" th:field="*{cell_phone}" oninput="validatePhoneNumber(this)" required>
+            <div id="telefoneError" style="color:red;"></div>
+            <br>
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" th:field="*{address}" required>
+            <br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" th:field="*{password}" oninput="checkPasswords()" required>
+            <br>
+            <label for="password2">Confirme sua senha:</label>
+            <input type="password" id="password2" oninput="checkPasswords()" required>
+            <div id="passwordError" style="color:red;"></div>
+            <br>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
 </body>
 </html>
