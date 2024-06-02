@@ -10,6 +10,7 @@ import br.com.senac.woodstock.woodstock.Model.User;
 
 @Controller
 public class CadastroClienteController {
+
     @GetMapping("/cadastro")
     public String cadastroCliente(Model model) {
         User user = new User();

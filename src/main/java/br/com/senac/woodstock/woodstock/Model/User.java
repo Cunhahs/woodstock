@@ -1,14 +1,19 @@
 package br.com.senac.woodstock.woodstock.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-//@Entity
-//@Table(name = "user")
+@Entity
+@Table(name = "User")
 public class User {
-    
+
+    @Id
+    String id;
     String username;
     String cnpj ;
     String email;
