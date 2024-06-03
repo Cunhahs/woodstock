@@ -13,12 +13,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     String id;
+    @Column(name = "username")
     String username;
+    @Column(name = "cpnj")
     String cnpj ;
+    @Column(name = "email")
     String email;
+    @Column(name = "password")
     String password;
     @Column(name = "address")
     String address;
+    @Column(name = "cell_phone")
     String cell_phone;
     @Column(name = "adm")
     String adm;

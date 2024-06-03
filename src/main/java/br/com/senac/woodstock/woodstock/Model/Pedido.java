@@ -1,34 +1,38 @@
 package br.com.senac.woodstock.woodstock.Model;
 
+import br.com.senac.woodstock.woodstock.Model.Produto;
+import br.com.senac.woodstock.woodstock.Model.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-@AllArgsConstructor
-@Setter
-@Getter
 @Entity
 @Table(name = "Orders")
-public class Pedido{
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
-    private Long idPedido;
+    private Long id;
 
-    @Column(name = "data_pedido")
+    @Column(name = "data_pedido", nullable = false)
     private String dataPedido;
 
-    @Column(name = "valor_pedido")
+    @Column(name = "quantidade_produto_pedido", nullable = false)
+    private int quantidadeProdutoPedido;
+
+    @Column(name = "valor_pedido", nullable = false)
     private String valorPedido;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_user_id"))
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Pedido() {
+    @ManyToOne
+    @JoinColumn(name = "produto_id", nullable = false)
+    private Produto produto;
 
+    public void setUser(User user) {
+        this.user = user;
     }
-}
 
+    // Construtores, getters e setters
+}

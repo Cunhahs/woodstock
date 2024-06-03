@@ -1,5 +1,6 @@
 package br.com.senac.woodstock.woodstock.controllers;
 
+import br.com.senac.woodstock.woodstock.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.senac.woodstock.woodstock.Model.User;
-import br.com.senac.woodstock.woodstock.service.UserService;
 
 public class ClienteController {
 

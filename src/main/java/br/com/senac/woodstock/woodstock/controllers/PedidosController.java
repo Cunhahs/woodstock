@@ -9,10 +9,7 @@ package br.com.senac.woodstock.woodstock.controllers;
     import org.springframework.security.core.userdetails.UserDetails;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+    import org.springframework.web.bind.annotation.*;
     import br.com.senac.woodstock.woodstock.Model.Pedido;
     import br.com.senac.woodstock.woodstock.repo.PedidoRepository;
 
@@ -25,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
         @Autowired
         UserRepository userRepository;
 
+        @Autowired
         PedidoRepository pedidoRepository;
 
 
@@ -49,8 +47,28 @@ import org.springframework.web.bind.annotation.RequestParam;
             }            return "pedidos";
         }
 
+    @PostMapping
+    public String salvar(@ModelAttribute("pedido") Pedido pedido) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+            String username = userDetails.getUsername();
+            Optional<User> idDoUsuario = userRepository.findByUsername(username);
+
+            //AMARRANDO USUÁRIO LOGADO NO PEDIDO
+            pedido.setUser(idDoUsuario.get());
+
+            pedidoRepository.saveAndFlush(pedido);
+
+        }
+        return "pedidos";
     }
+
+
+
+
+}
 
 
