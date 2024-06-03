@@ -11,7 +11,6 @@ package br.com.senac.woodstock.woodstock.controllers;
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.*;
     import br.com.senac.woodstock.woodstock.Model.Pedido;
-    import br.com.senac.woodstock.woodstock.repo.PedidoRepository;
 
     import java.util.Optional;
 

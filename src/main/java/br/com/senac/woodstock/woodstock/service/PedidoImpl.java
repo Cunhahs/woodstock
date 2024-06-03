@@ -2,9 +2,7 @@ package br.com.senac.woodstock.woodstock.service;
 
 import br.com.senac.woodstock.woodstock.Model.Pedido;
 import br.com.senac.woodstock.woodstock.Model.Produto;
-import br.com.senac.woodstock.woodstock.Model.User;
 import br.com.senac.woodstock.woodstock.repo.PedidoRepository;
-import br.com.senac.woodstock.woodstock.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +18,5 @@ public class PedidoImpl {
     public List<Pedido> findAllByUsuarioId(String user_id) {
         return pedidoRepository.findAllByUserId(user_id);
     }
-    public Optional<Produto> findByProduto(String produto) {return pedidoRepository.findByProduto(produto);}
+    public Optional<Produto> findByProduto(Produto produto) {return pedidoRepository.findByProduto(produto);}
 }

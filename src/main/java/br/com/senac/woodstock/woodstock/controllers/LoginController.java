@@ -1,11 +1,8 @@
 package br.com.senac.woodstock.woodstock.controllers;
 
 import br.com.senac.woodstock.woodstock.Model.User;
-import br.com.senac.woodstock.woodstock.security.SecurityConfig;
 import br.com.senac.woodstock.woodstock.service.Userimpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

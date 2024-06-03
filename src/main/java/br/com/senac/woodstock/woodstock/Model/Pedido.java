@@ -1,7 +1,5 @@
 package br.com.senac.woodstock.woodstock.Model;
 
-import br.com.senac.woodstock.woodstock.Model.Produto;
-import br.com.senac.woodstock.woodstock.Model.User;
 import jakarta.persistence.*;
 
 @Entity
